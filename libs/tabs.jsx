@@ -35,7 +35,7 @@ var Tabs = React.createClass({
     }
   },
   render(){
-    var tabContainerClass = classNames('tabs-container',this.props.className)
+    var tabContainerClass = classNames('tabsSessionStorageHandler.container',this.props.className)
     return(
       <div className={tabContainerClass}>
         {this._getMenu()}
@@ -61,7 +61,7 @@ var Tabs = React.createClass({
   _getCallbackParameter(index){
     //index, selected panel, selected menu
     var activeTab = typeof index === "undefined" ? this.state.activeTab : index
-    return [ activeTab, this.tabPanel, this['tab-menu-${activeTab}']];
+    return [ activeTab, this.tabPanel, this['tab_menu_${activeTab}']];
   },
   _getMenu(){
     if (!this.props.children) {
@@ -77,11 +77,11 @@ var Tabs = React.createClass({
       .filter($panel => $panel)
       .map(($panel, index) => {
         var menuClasses = classNames(
-          'tabs-menu-item',
-          this.state.activeTab === (index + 1) && 'is-active'
+          'tabs_menu_item',
+          this.state.activeTab === (index + 1) && 'is_active'
         );
         return (
-          <li ref={(ref) => this['tab-menu-${index + 1}'] = ref} key={index} className={menuClasses}>
+          <li ref={(ref) => this['tab_menu_${index + 1}'] = ref} key={index} className={menuClasses}>
             <a onClick={this.setActive.bind(this, index + 1)}>
               {$panel.props.title}
             </a>
@@ -89,13 +89,13 @@ var Tabs = React.createClass({
         );
     });
     return (
-      <ul className="tab-menu">{$items}</ul>
+      <ul className="tab_menu">{$items}</ul>
     );
   },
   _getSelectedPanel () {
     var panelIndex = this.state.activeTab - 1;
     return (
-      <div ref={(ref)=>this.tabPanel = ref} className='tab-panel'>
+      <div ref={(ref)=>this.tabPanel = ref} className='tab_panel'>
         {this.props.children[panelIndex]}
       </div>
     );
@@ -114,12 +114,12 @@ Tabs.Panel = React.createClass({
   },
   componentDidMount(){
     if(this.props.onPanelMount){
-      this.props.onMount()
+      this.props.onPanelMount()
     }
   },
   componentWillReceiveProps(newProps){
     if(newProps.onPanelMount){
-      newProps.onMount()
+      newProps.onPanelMount()
     }
   },
   render () {
