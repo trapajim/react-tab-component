@@ -1,0 +1,19 @@
+.tabs-menu {
+  list-style: none;
+}
+
+.tabs-menu-item {
+  float: left;
+  margin-right: 10px;
+}
+
+.tabs-menu-item a {
+  cursor: pointer;
+  color: #22a7f0;
+}
+
+.tabs-menu-item:not(.is-active) a:hover,
+.tabs-menu-item.is-active a {
+  color: #0b6ca1;
+}
+
